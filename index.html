@@ -2,7 +2,7 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <title>Realidad Aumentada con AR.js y A-Frame</title>
+    <title>RA con AR.js - Abrir Video</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.min.js"></script>
   </head>
@@ -10,15 +10,24 @@
     <!-- Configuración del Escenario de RA -->
     <a-scene embedded arjs>
       <!-- Componente de RA con la Imagen de Referencia -->
-      <a-marker type="pattern" url="https://github.com/alefe1978/alefe1978.github.io/blob/main/pattern-73d449d5ef5baf39efe16c091b8d7ced.patt">
-        <!-- Añadir un Objeto 3D o 2D a Mostrar al Reconocer la Imagen -->
-        <a-box position="0 0.5 0" material="color: blue;"></a-box>
-        <!-- Puedes Añadir más Objetos como un Texto, Modelos 3D, etc. -->
-        <a-text value="¡Hola, RA!" position="0 1 0" scale="2 2 2" color="#FFF"></a-text>
+      <a-marker type="pattern" url="https://github.com/alefe1978/alefe1978.github.io/blob/main/pattern-73d449d5ef5baf39efe16c091b8d7ced.patt" id="videoMarker">
+        <!-- Añadir un Objeto 3D o Texto para indicar que el patrón fue detectado -->
+        <a-box position="0 0.5 0" material="color: red;"></a-box>
+        <a-text value="Haz clic para ver video" position="0 1 0" scale="1 1 1" color="#FFF"></a-text>
       </a-marker>
-      
+
       <!-- Añadir una Cámara para RA -->
       <a-entity camera></a-entity>
     </a-scene>
+
+    <!-- Script de JavaScript para abrir el video -->
+    <script>
+      // Detectar el evento de clic en el marcador
+      document.querySelector("#videoMarker").addEventListener("markerFound", () => {
+        // Abre el video de YouTube en una nueva pestaña
+        window.open("https://www.youtube.com/watch?v=Z-jeDqVI1po", "_blank");
+      });
+    </script>
   </body>
 </html>
+
