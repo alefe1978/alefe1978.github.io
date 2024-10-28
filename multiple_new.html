@@ -32,16 +32,38 @@
   <!-- Escenario de Realidad Aumentada -->
   <a-scene embedded arjs="sourceType: webcam;">
     <!-- Marcadores -->
-    <a-marker type="pattern" url="./patts/pattern-image1.patt" id="marker1">
+    <a-marker type="pattern" url="./patts/pattern-images_01.patt" id="marker1">
       <a-box position="0 0.5 0" material="color: red;" scale="0.5 0.5 0.5"></a-box>
       <a-text value="Video 1" position="0 1 0" scale="0.8 0.8 0.8" color="#FFF"></a-text>
     </a-marker>
 
-    <a-marker type="pattern" url="./pattern-image1.patt" id="marker2">
+    <a-marker type="pattern" url="./patts/pattern-images_02.patt" id="marker2">
       <a-box position="0 0.5 0" material="color: blue;" scale="0.5 0.5 0.5"></a-box>
       <a-text value="Video 2" position="0 1 0" scale="0.8 0.8 0.8" color="#FFF"></a-text>
     </a-marker>
+    
+    <a-marker type="pattern" url="./patts/pattern-images_03.patt" id="marker3">
+      <a-box position="0 0.5 0" material="color: red;" scale="0.5 0.5 0.5"></a-box>
+      <a-text value="Video 3" position="0 1 0" scale="0.8 0.8 0.8" color="#FFF"></a-text>
+    </a-marker>
 
+    <a-marker type="pattern" url="./patts/pattern-images_04.patt" id="marker4">
+      <a-box position="0 0.5 0" material="color: blue;" scale="0.5 0.5 0.5"></a-box>
+      <a-text value="Video 4" position="0 1 0" scale="0.8 0.8 0.8" color="#FFF"></a-text>
+    </a-marker>
+
+        <a-marker type="pattern" url="./patts/pattern-images_05.patt" id="marker5">
+      <a-box position="0 0.5 0" material="color: red;" scale="0.5 0.5 0.5"></a-box>
+      <a-text value="Video 5" position="0 1 0" scale="0.8 0.8 0.8" color="#FFF"></a-text>
+    </a-marker>
+
+    <a-marker type="pattern" url="./patts/pattern-images_06.patt" id="marker6">
+      <a-box position="0 0.5 0" material="color: blue;" scale="0.5 0.5 0.5"></a-box>
+      <a-text value="Video 6" position="0 1 0" scale="0.8 0.8 0.8" color="#FFF"></a-text>
+    </a-marker>
+
+
+    
     <!-- Cámara para RA -->
     <a-entity camera></a-entity>
   </a-scene>
@@ -59,7 +81,11 @@
     document.addEventListener("DOMContentLoaded", () => {
       const markers = [
         { id: "marker1", videoSrc: "./pattern-image1.mp4" },
-        { id: "marker2", videoSrc: "./pattern-image2.mp4" }
+        { id: "marker2", videoSrc: "./pattern-image2.mp4" },
+        { id: "marker3", videoSrc: "./pattern-image3.mp4" },
+        { id: "marker4", videoSrc: "./pattern-image4.mp4" },
+        { id: "marker5", videoSrc: "./pattern-image5.mp4" },
+        { id: "marker6", videoSrc: "./pattern-image6.mp4" }
       ];
 
       const videoPopup = document.getElementById("videoPopup");
