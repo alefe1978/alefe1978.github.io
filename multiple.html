@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>RA con AR.js - Videos MP4 Locales</title>
+  <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.min.js"></script>
+  <style>
+    /* Estilos para el popup del video */
+    #videoPopup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80%;
+      max-width: 600px;
+      background-color: rgba(0, 0, 0, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+      z-index: 1000;
+      text-align: center;
+    }
+
+    #videoPopup video {
+      width: 100%;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body style="margin: 0; overflow: hidden;">
+  <!-- Escenario de Realidad Aumentada -->
+  <a-scene embedded arjs="sourceType: webcam;">
+    <!-- Marcador 1 -->
+    <a-marker type="pattern" url="./pattern-73d449d5ef5baf39efe16c091b8d7ced.patt" id="marker1">
+      <a-box position="0 0.5 0" material="color: red;" scale="0.5 0.5 0.5"></a-box>
+      <a-text value="Video 1" position="0 1 0" scale="0.8 0.8 0.8" color="#FFF"></a-text>
+    </a-marker>
+
+    <!-- Marcador 2 -->
+    <a-marker type="pattern" url="./pattern-image2.patt" id="marker2">
+      <a-box position="0 0.5 0" material="color: blue;" scale="0.5 0.5 0.5"></a-box>
+      <a-text value="Video 2" position="0 1 0" scale="0.8 0.8 0.8" color="#FFF"></a-text>
+    </a-marker>
+
+        <!-- Marcador 3 -->
+    <a-marker type="pattern" url="./pattern3.patt" id="marker3">
+      <a-box position="0 0.5 0" material="color: red;" scale="0.5 0.5 0.5"></a-box>
+      <a-text value="Video 3" position="0 1 0" scale="0.8 0.8 0.8" color="#FFF"></a-text>
+    </a-marker>
+
+    <!-- Marcador 4 -->
+    <a-marker type="pattern" url="./pattern4.patt" id="marker4">
+      <a-box position="0 0.5 0" material="color: blue;" scale="0.5 0.5 0.5"></a-box>
+      <a-text value="Video 4" position="0 1 0" scale="0.8 0.8 0.8" color="#FFF"></a-text>
+    </a-marker>
+
+        <!-- Marcador 5 -->
+    <a-marker type="pattern" url="./pattern5.patt" id="marker5">
+      <a-box position="0 0.5 0" material="color: red;" scale="0.5 0.5 0.5"></a-box>
+      <a-text value="Video 5" position="0 1 0" scale="0.8 0.8 0.8" color="#FFF"></a-text>
+    </a-marker>
+
+    <!-- Marcador 6 -->
+    <a-marker type="pattern" url="./pattern6.patt" id="marker6">
+      <a-box position="0 0.5 0" material="color: blue;" scale="0.5 0.5 0.5"></a-box>
+      <a-text value="Video 6" position="0 1 0" scale="0.8 0.8 0.8" color="#FFF"></a-text>
+    </a-marker>
+
+        <!-- Marcador 7 -->
+    <a-marker type="pattern" url="./pattern7.patt" id="marker7">
+      <a-box position="0 0.5 0" material="color: red;" scale="0.5 0.5 0.5"></a-box>
+      <a-text value="Video 7" position="0 1 0" scale="0.8 0.8 0.8" color="#FFF"></a-text>
+    </a-marker>
+
+    <!-- Marcador 8 -->
+    <a-marker type="pattern" url="./pattern8.patt" id="marker8">
+      <a-box position="0 0.5 0" material="color: blue;" scale="0.5 0.5 0.5"></a-box>
+      <a-text value="Video 6" position="0 1 0" scale="0.8 0.8 0.8" color="#FFF"></a-text>
+    </a-marker>
+
+    <!-- Cámara para RA -->
+    <a-entity camera></a-entity>
+  </a-scene>
+
+  <!-- Popup para mostrar el video -->
+  <div id="videoPopup">
+    <video id="popupVideo" controls autoplay>
+      <source src="" type="video/mp4">
+      Tu navegador no soporta el elemento de video.
+    </video>
+  </div>
+
+  <!-- Script para eventos de los marcadores -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const markers = [
+        { id: "marker1", videoSrc: "./video1.mp4" },
+        { id: "marker2", videoSrc: "./video2.mp4" },
+        { id: "marker1", videoSrc: "./video3.mp4" },
+        { id: "marker2", videoSrc: "./video4.mp4" },
+        { id: "marker1", videoSrc: "./video5.mp4" },
+        { id: "marker2", videoSrc: "./video6.mp4" },
+        { id: "marker1", videoSrc: "./video7.mp4" },
+        { id: "marker2", videoSrc: "./video8.mp4" }
+      ];
+
+      const videoPopup = document.getElementById("videoPopup");
+      const popupVideo = document.getElementById("popupVideo");
+
+      // Función para mostrar el popup y reproducir el video
+      function showVideoPopup(videoSrc) {
+        popupVideo.src = videoSrc; // Asigna la fuente del video
+        videoPopup.style.display = "block"; // Muestra el popup
+        popupVideo.play(); // Reproduce el video
+
+        // Cierra el popup cuando el video termina
+        popupVideo.onended = () => {
+          closeVideoPopup();
+        };
+      }
+
+      // Función para cerrar el popup del video
+      function closeVideoPopup() {
+        videoPopup.style.display = "none";
+        popupVideo.pause();
+        popupVideo.src = ""; // Limpia la fuente del video
+      }
+
+      // Asigna eventos a cada marcador
+      markers.forEach(markerData => {
+        const marker = document.querySelector(`#${markerData.id}`);
+        
+        if (marker) {
+          marker.addEventListener("markerFound", () => {
+            console.log(`¡Marcador ${markerData.id} detectado! Reproduciendo video...`);
+            showVideoPopup(markerData.videoSrc);
+          });
+
+          marker.addEventListener("markerLost", () => {
+            console.log(`Marcador ${markerData.id} perdido.`);
+            closeVideoPopup(); // Cierra el popup si se pierde el marcador
+          });
+        } else {
+          console.warn(`No se encontró el marcador con id: ${markerData.id}`);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
