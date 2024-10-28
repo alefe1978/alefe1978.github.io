@@ -1,33 +1,40 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <title>RA con AR.js - Abrir Video</title>
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.min.js"></script>
-  </head>
-  <body style="margin: 0; overflow: hidden;">
-    <!-- Configuración del Escenario de RA -->
-    <a-scene embedded arjs>
-      <!-- Componente de RA con la Imagen de Referencia -->
-      <a-marker type="pattern" url="https://github.com/alefe1978/alefe1978.github.io/blob/main/pattern-73d449d5ef5baf39efe16c091b8d7ced.patt" id="videoMarker">
-        <!-- Añadir un Objeto 3D o Texto para indicar que el patrón fue detectado -->
-        <a-box position="0 0.5 0" material="color: red;"></a-box>
-        <a-text value="Haz clic para ver video" position="0 1 0" scale="1 1 1" color="#FFF"></a-text>
-      </a-marker>
+<head>
+  <meta charset="UTF-8" />
+  <title>RA con AR.js - Video de YouTube</title>
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.min.js"></script>
+</head>
+<body style="margin: 0; overflow: hidden;">
+  <!-- Escenario de Realidad Aumentada -->
+  <a-scene embedded arjs>
+    <!-- Marcador de Imagen .patt -->
+    <a-marker type="pattern" url="https://github.com/alefe1978/alefe1978.github.io/blob/main/pattern-73d449d5ef5baf39efe16c091b8d7ced.patt" id="videoMarker">
+      <!-- Objeto Visual para Indicar que se Reconoció el Patrón -->
+      <a-box position="0 0.5 0" material="color: red;"></a-box>
+      <a-text value="Haz clic para ver video" position="0 1 0" scale="1 1 1" color="#FFF"></a-text>
+    </a-marker>
 
-      <!-- Añadir una Cámara para RA -->
-      <a-entity camera></a-entity>
-    </a-scene>
+    <!-- Cámara para RA -->
+    <a-entity camera></a-entity>
+  </a-scene>
 
-    <!-- Script de JavaScript para abrir el video -->
-    <script>
-      // Detectar el evento de clic en el marcador
-      document.querySelector("#videoMarker").addEventListener("markerFound", () => {
-        // Abre el video de YouTube en una nueva pestaña
-        window.open("https://www.youtube.com/watch?v=Z-jeDqVI1po", "_blank");
-      });
-    </script>
-  </body>
+  <!-- Script para Abrir el Video -->
+  <script>
+    // Obtiene el elemento del marcador
+    const marker = document.querySelector("#videoMarker");
+
+    // Evento para cuando se detecta el marcador
+    marker.addEventListener("markerFound", () => {
+      console.log("¡Marcador detectado! Abriendo video...");
+      window.open("https://www.youtube.com/watch?v=Z-jeDqVI1po", "_blank");
+    });
+
+    // Evento para cuando se pierde el marcador
+    marker.addEventListener("markerLost", () => {
+      console.log("Marcador perdido.");
+    });
+  </script>
+</body>
 </html>
-
