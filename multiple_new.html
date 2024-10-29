@@ -75,7 +75,7 @@
 
       // Función para mostrar el popup y reproducir el video
       function showVideoPopup() {
-        const randomIndex = Math.floor(Math.random() * 10) + 1; // Genera un número entre 1 y 16
+        const randomIndex = Math.floor(Math.random() * 18) + 1; // Genera un número entre 1 y 16
         const videoSrc = `./videos/pattern-images_${String(randomIndex).padStart(2, '0')}.mp4`;
 
         if (!popupVideo.paused) {
